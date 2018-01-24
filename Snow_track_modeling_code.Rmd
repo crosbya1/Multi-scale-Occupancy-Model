@@ -26,9 +26,9 @@ Author: Andrew D. Crosby,
 First of all, make sure you have WinBUGS installed on your computer with the key for unrestricted use and the update patch for version 1.4.3. Download the program and follow the instructions here: https://www.mrc-bsu.cam.ac.uk/software/bugs/the-bugs-project-winbugs/. 
 I highly recommend using WinBUGS rather than OpenBUGS, because for some reason OpenBUGS does not handle the model consistently - in our trials it took much longer to run and did not recover the parameters as well as WinBUGS. We did not use JAGS becasue it does not have a built-in CAR prior. However, if you are skilled enough to write your own CAR prior for JAGS it might be a good idea to try it. 
 
-Note: It is sometimes necessary to copy and paste the "WinBUGS14" from Program Files into your "Documents" folder because for some reason R wants administrator privalages to call it. In this case, you will need to specify the "bugs.directory" in the bugs command for running the model. 
+Note: It is sometimes necessary to copy and paste the "WinBUGS14" folder from Program Files into your "Documents" folder because for some reason R wants administrator privalages to call it. In this case, you will need to specify the "bugs.directory" in the bugs command for running the model. 
 
-The first set of code simulates csimulates the occupancy, use, track-laying, and observation processes. 
+The first set of code simulates the occupancy, use, track-laying, and observation processes. 
 
 ```{r}
 rm(list=ls(all=TRUE))
@@ -149,7 +149,7 @@ occ.obs       # The observed occupancy rate (naive estimate)
 Next, create the neighborhood data required for the CAR model
 
 ```{r}
-#  Create neighbor indices and adjacency matrix for CAR prior (Make sure there are at least 2 sites)
+# Create neighbor indices and adjacency matrix for the CAR prior
 getNumNeighbors <- function(sites) {
     if (sites < 1)
         return(NULL)
@@ -182,7 +182,7 @@ adj <- getAdjMatrix(nsegs)
 
 ```
 
-Create the CAR-Markov model for WinBUGS
+Write the CAR-Markov model for WinBUGS
 
 ```{r}
 
