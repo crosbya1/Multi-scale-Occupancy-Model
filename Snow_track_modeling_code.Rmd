@@ -1,6 +1,6 @@
 
 
-## Simulation and model code for the Car-Markov tracking transect model. 
+## Appendix S1: Simulation and model code for the Car-Markov tracking transect model. 
 
 ******
 
@@ -47,7 +47,7 @@ occupancy<-rbinom(ntrans, 1, psi)	# The true occupancy state of each transect
 mean(occupancy)
 
 # Set the parameters of the segment use data
-theta <- .3 		# The average probability of use among all transect segments
+theta <- 0.3 		# The average probability of use among all transect segments
 bo <-log(theta/(1-theta))	# The intercept for the use process
 arparam <- 0.8		# The unconditional variance parameter for the ar(1) process
 sdparam <- 2		# The autocorrelation parameter for the ar(1) process
