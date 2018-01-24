@@ -1,13 +1,4 @@
----
-title: "Appendix S1"
-output: 
-  word_document:
-    reference_docx: "C:/Users/crosby/Documents/ACrosby/Manuscripts/Snow Track/JWM_Submission1/Revisions_2/word_styles_reference_01.docx"
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Simulation and model code for the Car-Markov tracking transect model. 
 
@@ -293,8 +284,6 @@ Finally, run the model on the simulated data
 
 library(R2WinBUGS)
 
-bugsdir <- "C:\\Users\\crosby\\Documents\\ACrosby\\Manuscripts\\Snow Track\\JWM_Submission1\\Revisions_2\\WinBUGS14"
-
 data<-list("y.day", "ntrans", "nsegs", "nsurvs", "max.act", "acts.survs", "sum_neighbors",
   "adj", "num")
 
@@ -303,10 +292,10 @@ inits<-function(){ list(alpha1=matrix(0, ntrans, nsegs), alpha0=0)}
 params<-c("psi", "beta", "p", "alpha0", "psihat", "thetamean", "deltamean",
   "deltastarmean", "uhat")
 
-# out<-bugs(data, inits, params, "model.txt", n.chains=3,
-#  n.iter=5000, n.burn=500, n.thin=10, bugs.directory = bugsdir, debug=TRUE)
+out<-bugs(data, inits, params, "model.txt", n.chains=3,
+n.iter=5000, n.burn=500, n.thin=10, debug=TRUE)
 
-# print(out, dig=3)
+print(out, dig=3)
 
 
 ```
